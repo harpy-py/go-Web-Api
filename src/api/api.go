@@ -1,11 +1,15 @@
 package api
 
 import (
+	"fmt"
+
 	"github.com/gin-gonic/gin"
 	"github.com/harpy-py/go-Web-Api/api/routers"
+	"github.com/harpy-py/go-Web-Api/config"
 )
 
 func Initserver()  {
+	cfg := config.GetConfig()
 	r := gin.New()
 	r.Use(gin.Logger(), gin.Recovery())
 	
@@ -14,5 +18,5 @@ func Initserver()  {
 		health := v1.Group("/health")
 		routers.Health(health)
 	}
-	r.Run(":2002")
+	r.Run(fmt.Sprintf(":%s", cfg.Server.Port))
 }
