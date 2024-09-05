@@ -18,6 +18,7 @@ func TestRouter(r *gin.RouterGroup){
 	r.POST("/binder/query1", h.QueryBinder1)
 	r.POST("/binder/query2", h.QueryBinder2)
 	r.POST("/binder/uri/:id/:name", h.UriBinder)
+	r.POST("/binder/body", h.BodyBinder)
 	r.POST("/binder/form", h.FormBinder)
 	r.POST("/binder/file", h.FileBinder)
 }
