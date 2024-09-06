@@ -15,6 +15,7 @@ type personData struct {
 	FirstName string `json:"first_name" binding:"required,alpha,min=3,max=10"`
 	LastName  string `json:"last_name" binding:"required,alpha,min=5,max=10"`
 	MobileNumber string `json:"mobile_number" binding:"required,mobile,min=11,max=11"`
+	Password string `json:"password" binding:"required,password"`
 }
 
 type TestHandler struct {
@@ -156,3 +157,4 @@ func (h *TestHandler) FileBinder(ctx *gin.Context) {
 		"file":   file.Filename,
 	})
 }
+
