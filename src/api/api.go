@@ -12,8 +12,7 @@ import (
 	"github.com/harpy-py/go-Web-Api/config"
 )
 
-func Initserver()  {
-	cfg := config.GetConfig()
+func Initserver(conf *config.Config)  {
 	r := gin.New()
 
 	val, ok := binding.Validator.Engine().(*validator.Validate)
@@ -37,5 +36,5 @@ func Initserver()  {
 		health := v2.Group("/health")
 		routers.Health(health)
 	}
-	r.Run(fmt.Sprintf(":%s", cfg.Server.Port))
+	r.Run(fmt.Sprintf(":%s", conf.Server.Port))
 }
