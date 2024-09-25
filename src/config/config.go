@@ -26,7 +26,10 @@ type PostgresConfig struct {
 	User     string
 	Password string
 	DbName   string
-	SslMode  bool
+	SslMode  string
+	MaxIdleConns int
+	MaxOpenConns int
+	ConnMaxLifetime time.Duration
 }
 
 type RedisConfig struct {

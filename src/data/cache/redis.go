@@ -8,10 +8,10 @@ import (
 	"github.com/harpy-py/go-Web-Api/config"
 )
 
-var RedisClient *redis.Client
+var redisClient *redis.Client
 
-func InitRedis(conf *config.Config){
-	RedisClient = redis.NewClient(&redis.Options{
+func InitRedis(conf *config.Config) error {
+	redisClient = redis.NewClient(&redis.Options{
 		Addr: fmt.Sprintf("%s:%s", conf.Redis.Host, conf.Redis.Port),
 		Password: conf.Redis.Password,
 		DB: 0,
@@ -23,12 +23,18 @@ func InitRedis(conf *config.Config){
 		IdleTimeout: conf.Redis.IdleTimeout * time.Millisecond,
 		IdleCheckFrequency: conf.Redis.IdleCheckFrequency * time.Millisecond,
 	})
+
+	_, err := redisClient.Ping().Result()
+	if err != nil{
+		return err
+	}
+	return nil
 }
 
 func GetRedis() *redis.Client{
-	return RedisClient
+	return redisClient
 }
 
 func CloseRedis(){
-	RedisClient.Close()
+	redisClient.Close()
 }
