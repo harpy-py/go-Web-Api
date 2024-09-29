@@ -9,6 +9,7 @@ import (
 	"github.com/harpy-py/go-Web-Api/data/db"
 )
 
+// @
 func main() {
 	conf := config.GetConfig()
 	err := cache.InitRedis(conf)

@@ -2,7 +2,6 @@ package api
 
 import (
 	"fmt"
-
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
@@ -10,10 +9,15 @@ import (
 	"github.com/harpy-py/go-Web-Api/api/routers"
 	validation "github.com/harpy-py/go-Web-Api/api/validations"
 	"github.com/harpy-py/go-Web-Api/config"
+	"github.com/harpy-py/go-Web-Api/docs"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func Initserver(conf *config.Config)  {
 	r := gin.New()
+
+	RegisterSwagger(r, conf)
 
 	val, ok := binding.Validator.Engine().(*validator.Validate)
 	if ok {
@@ -37,4 +41,15 @@ func Initserver(conf *config.Config)  {
 		routers.Health(health)
 	}
 	r.Run(fmt.Sprintf(":%s", conf.Server.Port))
+}
+
+
+func RegisterSwagger(r *gin.Engine, conf *config.Config){
+	docs.SwaggerInfo.Title = "Golang web api"
+	docs.SwaggerInfo.Description = "Golang web api"
+	docs.SwaggerInfo.Version = "1.0"
+	docs.SwaggerInfo.BasePath = "/api"
+	docs.SwaggerInfo.Host = fmt.Sprintf("localhost:%s", conf.Server.Port)
+	docs.SwaggerInfo.Schemes = []string{"http"}
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 }
