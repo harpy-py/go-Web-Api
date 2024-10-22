@@ -7,6 +7,8 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
+var zapSinLogger *zap.SugaredLogger
+
 var logLevelMap = map[string]zapcore.Level{
 	"debug": zapcore.DebugLevel,
 	"info": zapcore.InfoLevel,
@@ -35,24 +37,28 @@ func (l *zapLogger) getLogLevel() zapcore.Level{
 }
 
 func (l *zapLogger) Init() {
-	wrt := zapcore.AddSync(&lumberjack.Logger{
-		Filename: l.conf.Logger.FilePath,
-		MaxSize: 1,
-		MaxAge: 5,
-		MaxBackups: 10,
-		Compress: true,
+	once.Do(func() {
+
+		wrt := zapcore.AddSync(&lumberjack.Logger{
+			Filename: l.conf.Logger.FilePath,
+			MaxSize: 1,
+			MaxAge: 5,
+			MaxBackups: 10,
+			Compress: true,
+		})
+
+		config := zap.NewProductionEncoderConfig()
+		config.EncodeTime = zapcore.ISO8601TimeEncoder
+		core := zapcore.NewCore(
+			zapcore.NewJSONEncoder(config),
+			wrt,
+			l.getLogLevel(),
+		)
+
+		logger := zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1), zap.AddStacktrace(zapcore.ErrorLevel)).Sugar()
+		zapSinLogger = logger.With("AppName", "MyApp", "LoggerName", "Zap")
 	})
-
-	config := zap.NewProductionEncoderConfig()
-	config.EncodeTime = zapcore.ISO8601TimeEncoder
-	core := zapcore.NewCore(
-		zapcore.NewJSONEncoder(config),
-		wrt,
-		l.getLogLevel(),
-	)
-
-	logger := zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1), zap.AddStacktrace(zapcore.ErrorLevel)).Sugar()
-	l.logger = logger
+	l.logger = zapSinLogger
 }
 
 func (l *zapLogger) Debug(cat Category, sub SubCategory, msg string, extra map[ExtraKey]interface{}) {
@@ -106,6 +112,6 @@ func prepareLogKeys(extra map[ExtraKey]interface{}, cat Category, sub SubCategor
 	}
 	extra["Category"] = cat
 	extra["SubCategory"] = sub
-	params := mapToZapParams(extra)
+	params := logParamsToZapParams(extra)
 	return params
 }

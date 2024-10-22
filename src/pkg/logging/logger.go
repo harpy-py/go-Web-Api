@@ -22,5 +22,10 @@ type Logger interface {
 }
 
 func NewLogger(conf *config.Config) Logger{
-	return newZapLogger(conf)
+	if conf.Logger.Logger == "zap" {
+		return newZapLogger(conf)
+	} else if conf.Logger.Logger == "zerolog" {
+		return newZeroLogger(conf)
+	}
+	panic("Logger not supported!")
 }
