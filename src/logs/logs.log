@@ -1,0 +1,6 @@
+{"level":"info","ts":"2024-11-01T11:01:19.164+0330","caller":"db/postgres.go:36","msg":"The Connection has established!","AppName":"MyApp","LoggerName":"Zap","Category":"Postgres","SubCategory":"StartUp"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"StartUp","time":"2024-11-01T11:08:30+03:30","message":"The Connection has established!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"StartUp","time":"2024-11-01T11:28:22+03:30","message":"The Connection has established!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"StartUp","time":"2024-11-01T12:28:16+03:30","message":"The Connection has established!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"StartUp","time":"2024-11-01T12:42:21+03:30","message":"The Connection has established!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"StartUp","time":"2024-11-05T16:39:17+03:30","message":"The Connection has established!"}

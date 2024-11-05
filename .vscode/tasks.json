@@ -3,8 +3,16 @@
     "tasks": [
         {
             "label": "swag",
-            "command": "cd src && swag init -g cmd/main.go",
-            "type": "shell"
+            "type": "shell",
+            "command": "swag",
+            "args": [
+                "init",
+                "-g",
+                "cmd/main.go"
+            ],
+            "options": {
+                "cwd": "src"
+            }
         }
     ]
 }
