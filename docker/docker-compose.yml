@@ -60,7 +60,7 @@ services:
 
   filebeat:
     build:
-      context: elk/filebeat
+      context: elk/filebeat/
       args:
         ELASTIC_VERSION: ${ELASTIC_VERSION}
     user: root
@@ -70,7 +70,6 @@ services:
     volumes:
       - ./elk/filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml
       - ../src/logs:/var/log/filebeat/service
-      - /var/run/docker.sock:/var/run/docker.sock
       - logs:/var/log/filebeat
       - logs:/app:ro
     environment:

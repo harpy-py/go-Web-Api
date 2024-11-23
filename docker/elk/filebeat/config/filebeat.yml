@@ -28,12 +28,12 @@ setup.kibana.host: kibana:5601
 setup.template.settings:
   index.number_of_shareds: 1
 
-filebeat.autodiscover:
-  providers:
-    # The Docker autodiscover provider automatically retrieves logs from Docker
-    # containers as they start and stop.
-    - type: docker
-      hints.enabled: true
+# filebeat.autodiscover:
+#   providers:
+#     # The Docker autodiscover provider automatically retrieves logs from Docker
+#     # containers as they start and stop.
+#     - type: docker
+#       hints.enabled: true
 
 processors:
   - decode_json_fields:
@@ -51,7 +51,7 @@ monitoring:
     password: ${BEATS_SYSTEM_PASSWORD}
 
 output.elasticsearch:
-  hosts: [ http://elasticsearch:9200 ]
+  hosts: ["http://elasticsearch:9200"]
   username: filebeat_internal
   password: ${FILEBEAT_INTERNAL_PASSWORD}
   index: "logs-service-%{+yyyy.MM.dd}"

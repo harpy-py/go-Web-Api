@@ -25,7 +25,7 @@ func Initserver(conf *config.Config)  {
 		val.RegisterValidation("password", validation.PasswdStrengthValidator)
 	}
 	
-	r.Use(gin.Logger(), gin.Recovery(), middlewares.LimitByRequest())
+	r.Use(gin.Logger(), gin.Recovery(), middlewares.LimitByRequest(), middlewares.DefaultStructureLogger(conf))
 
 	api := r.Group("/api")
 	v1 := api.Group("/v1")

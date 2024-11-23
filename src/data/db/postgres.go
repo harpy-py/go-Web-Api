@@ -14,11 +14,12 @@ var dbClient *gorm.DB
 var logger = logging.NewLogger(config.GetConfig())
 
 func InitDb(conf *config.Config) error {
+	var err error
 	connect := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s TimeZone=Asia/Tehran",
 		conf.Postgres.Host, conf.Postgres.Port, conf.Postgres.User, conf.Postgres.Password, conf.Postgres.DbName,
 		conf.Postgres.SslMode)
 
-	dbClient, err := gorm.Open(postgres.Open(connect), &gorm.Config{})
+	dbClient, err = gorm.Open(postgres.Open(connect), &gorm.Config{})
 	if err != nil{
 		return err
 	}

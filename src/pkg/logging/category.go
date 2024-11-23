@@ -19,6 +19,7 @@ const(
 	ExternalService SubCategory = "ExternalService"
 
 	//Postgres
+	Migration SubCategory = "Migration"
 	Select SubCategory = "Select"
 	Rollback SubCategory = "Rollback"
 	Update SubCategory = "Update"
@@ -46,5 +47,7 @@ const(
 	Path ExtraKey = "Path"
 	Latancy ExtraKey = "Latancy"
 	Body ExtraKey = "Body"
+	RequestBody = "RequestBody"
+	ResponseBody = "ResponseBody"
 	ErrorMessage ExtraKey = "ErrorMessage"
 )

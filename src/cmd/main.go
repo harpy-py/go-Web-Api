@@ -5,6 +5,7 @@ import (
 	"github.com/harpy-py/go-Web-Api/config"
 	"github.com/harpy-py/go-Web-Api/data/cache"
 	"github.com/harpy-py/go-Web-Api/data/db"
+	"github.com/harpy-py/go-Web-Api/data/db/migrations"
 	"github.com/harpy-py/go-Web-Api/pkg/logging"
 )
 
@@ -23,5 +24,6 @@ func main() {
 	if err != nil{
 		logger.Fatal(logging.Postgres, logging.StartUp, err.Error(), nil)
 	}
+	migrations.Up_1()
 	api.Initserver(conf)
 }
