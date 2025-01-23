@@ -29,3 +29,7 @@ redis:
   poolTimeout: 15
   idleTimeout: 500
   idleCheckFrequency: 500
+Otp:
+  expireTime: 120
+  digits: 6
+  limiter: 100
