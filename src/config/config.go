@@ -57,9 +57,11 @@ type RedisConfig struct {
 
 type OtpConfig struct{
   ExpireTime time.Duration
-  Digits int
+  Digits int64
   Limiter time.Duration
 }
+
+
 
 func GetConfig() *Config{
 	cfgPath := getConfigPath(os.Getenv("APP_ENV"))

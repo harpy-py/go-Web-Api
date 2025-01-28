@@ -72,3 +72,14 @@
 {"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"Migration","time":"2025-01-20T17:06:08+03:30","message":"Tables created!"}
 {"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"StartUp","time":"2025-01-20T17:24:11+03:30","message":"The Connection has established!"}
 {"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"Migration","time":"2025-01-20T17:24:11+03:30","message":"Tables created!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"StartUp","time":"2025-01-24T11:51:56+03:30","message":"The Connection has established!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"Migration","time":"2025-01-24T11:51:56+03:30","message":"Tables created!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"RequestResponse","SubCategory":"Api","BodySize":-1,"ClientIP":"::1","ErrorMessage":"","Latancy":0,"Method":"POST","Path":"","RequestBody":"{\n  \"mobileNumber\": \"string\"\n}","ResponseBody":"","StatusCode":404,"time":"2025-01-24T11:52:41+03:30"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"StartUp","time":"2025-01-24T16:22:27+03:30","message":"The Connection has established!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"Migration","time":"2025-01-24T16:22:27+03:30","message":"Tables created!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"StartUp","time":"2025-01-24T16:25:12+03:30","message":"The Connection has established!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"Migration","time":"2025-01-24T16:25:12+03:30","message":"Tables created!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"StartUp","time":"2025-01-24T16:29:43+03:30","message":"The Connection has established!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"Postgres","SubCategory":"Migration","time":"2025-01-24T16:29:43+03:30","message":"Tables created!"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"RequestResponse","SubCategory":"Api","BodySize":82,"ClientIP":"::1","ErrorMessage":"","Latancy":30.6262,"Method":"POST","Path":"/api/v1/users/send-otp","RequestBody":"{\n  \"mobileNumber\": \"09111111111\"\n}","ResponseBody":"","StatusCode":201,"time":"2025-01-24T16:30:24+03:30"}
+{"level":"info","AppName":"MyApp","LoggerName":"Zerolog","Category":"RequestResponse","SubCategory":"Api","BodySize":82,"ClientIP":"::1","ErrorMessage":"","Latancy":67.1812,"Method":"POST","Path":"/api/v1/users/send-otp","RequestBody":"{\n  \"mobileNumber\": \"09111111112\"\n}","ResponseBody":"","StatusCode":201,"time":"2025-01-24T16:31:08+03:30"}
