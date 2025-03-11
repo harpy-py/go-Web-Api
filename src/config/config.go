@@ -15,6 +15,7 @@ type Config struct {
 	Redis    RedisConfig
 	Logger LoggerConfig
 	Otp	OtpConfig
+	JWT JWTConfig
 }
 
 type ServerConfig struct {
@@ -59,6 +60,13 @@ type OtpConfig struct{
   ExpireTime time.Duration
   Digits int64
   Limiter time.Duration
+}
+
+type JWTConfig struct {
+	AccessTokenExpireDuration time.Duration
+	RefreshTokenExpireDuration time.Duration
+	Secret string
+	RefreshSecret string
 }
 
 

@@ -4,7 +4,9 @@ import (
 	dto "github.com/harpy-py/go-Web-Api/api/DTO"
 	"github.com/harpy-py/go-Web-Api/common"
 	"github.com/harpy-py/go-Web-Api/config"
+	"github.com/harpy-py/go-Web-Api/constants"
 	"github.com/harpy-py/go-Web-Api/data/db"
+	"github.com/harpy-py/go-Web-Api/data/models"
 	"github.com/harpy-py/go-Web-Api/pkg/logging"
 	"gorm.io/gorm"
 )
@@ -34,4 +36,38 @@ func (s *UserService) SendOtp(req *dto.GetOtpRequest) error {
 		return err
 	}
 	return nil
+}
+
+func (s *UserService) existsByEmail(email string) (bool, error) {
+	var exists bool
+	if err := s.database.Model(&models.User{}).Select("count(*) > 0").Where("email = ?", email).Find(&exists).Error; err != nil {
+		s.logger.Error(logging.Postgres, logging.Select, err.Error(), nil)
+		return false, err
+	}
+	return exists, nil
+}
+
+func (s *UserService) existsByUserName(username string) (bool, error) {
+	var exists bool
+	if err := s.database.Model(&models.User{}).Select("count(*) > 0").Where("username = ?", username).Find(&exists).Error; err != nil {
+		s.logger.Error(logging.Postgres, logging.Select, err.Error(), nil)
+		return false, err
+	}
+	return exists, nil
+}
+
+func (s *UserService) existsByMobileNuber(mobilenumber string) (bool, error) {
+	var exists bool
+	if err := s.database.Model(&models.User{}).Select("count(*) > 0").Where("mobile_number = ?", mobilenumber).Find(&exists).Error; err != nil {
+		s.logger.Error(logging.Postgres, logging.Select, err.Error(), nil)
+		return false, err
+	}
+	return exists, nil
+}
+
+func (s *UserService) getDefaultRole() (roleId int, err error){
+	if err = s.database.Model(&models.Role{}).Select("id").Where("name = ?", constants.DefaultRoleName).First(&roleId).Error; err != nil {
+		return 0, err
+	}
+	return roleId, nil
 }
